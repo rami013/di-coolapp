@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+spec:
+  containers:
+  - name: nginx
+    image: christianhxc/nginx:safe
+    imagePullPolicy: Always
+    volumeMounts:
+    - name: host
+      mountPath: /host
+    securityContext:
+      runAsNonRoot: true
+  volumes:
+  - name: host
+    hostPath:
+      path: "/"
